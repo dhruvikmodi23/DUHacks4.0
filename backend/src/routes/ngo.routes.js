@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { changePassword, getCurrentUser, loginNgo, logoutNgo, refreshAccessToken, registerNgo, updateAccountDetails, viewProfile } from "../controllers/ngo.controller.js";
+import { changePassword, getAllNgos, getCurrentUser, loginNgo, logoutNgo, refreshAccessToken, registerNgo, updateAccountDetails, viewProfile } from "../controllers/ngo.controller.js";
 import { verifyJWTNGO } from "../middlewares/ngo.auth.middleware.js";
 import {upload} from "../middlewares/multer.middleware.js"
 
@@ -17,6 +17,7 @@ router.route("/changePassword").post(verifyJWTNGO, changePassword)
 router.route("/getCurrentUser").post(verifyJWTNGO, getCurrentUser)
 router.route("/updateAccountDetails").post(verifyJWTNGO, updateAccountDetails)
 router.route("/view-profile").post(viewProfile)
+router.route("/getallngos").post(getAllNgos)
 
 
 

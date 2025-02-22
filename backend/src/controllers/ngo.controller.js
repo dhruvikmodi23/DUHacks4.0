@@ -297,6 +297,13 @@ const viewProfile = asyncHandler(async(req, res) => {
 
 })
 
+const getAllNgos = asyncHandler(async (req, res) => {
+    const ngo = await Ngo.find().select("-password -refreshToken")
+    return res
+        .status(200)
+        .json(new ApiResponse(200, ngo, "Ngos retrieved successfully"))
+});
+
 
 // const forgotPassword = asyncHandler(async (req, res) => {
 //     const {email, newPassword} = req.body
@@ -321,5 +328,6 @@ export {
     changePassword,
     getCurrentUser,
     updateAccountDetails,
-    viewProfile
+    viewProfile,
+    getAllNgos
 }
