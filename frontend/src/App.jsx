@@ -8,20 +8,21 @@ import { RouterProvider,createBrowserRouter,createRoutesFromElements } from 'rea
 import Signup from './components/Signup'
 import Layout from './Layout'
 import Login from './components/Login'
+import Userhome from './components/Userhome'
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
+              <Route path="/signup" element={<Signup/>}/>
+              <Route path="/login" element={<Login/>}/>
               <Route path="/" element={<Layout/>}>
-              <Route path="" element={<h1>Home Component</h1>}/>
-              <Route path="ngos" element={<h1>ngo</h1>}/>
-              <Route path="signup" element={<Signup/>}/>
-              <Route path="login" element={<Login/>}/>
-              <Route path="userhome" element={<h1>userhome</h1>}/>
+                <Route path="" element={<h1>Home Component</h1>}/>
+                <Route path="ngos" element={<h1>ngo</h1>}/>
+                <Route path="userhome" element={<Userhome/>}/>
 
   
-        </Route>
+              </Route>
       </Route>
     ))
   return (
