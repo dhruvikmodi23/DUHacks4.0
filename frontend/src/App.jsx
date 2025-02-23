@@ -9,6 +9,10 @@ import Signup from './components/Signup'
 import Layout from './Layout'
 import Login from './components/Login'
 import Userhome from './components/Userhome'
+import Ngos from './components/Ngos'
+import CreateDonation from './components/Donationreq'
+import CreateEvent from './components/Events'
+import AllEvents from './components/Getallevents'
 
 function App() {
   const router = createBrowserRouter(
@@ -17,9 +21,13 @@ function App() {
               <Route path="/signup" element={<Signup/>}/>
               <Route path="/login" element={<Login/>}/>
               <Route path="/" element={<Layout/>}>
-                <Route path="" element={<h1>Home Component</h1>}/>
-                <Route path="ngos" element={<h1>ngo</h1>}/>
+                <Route path="" element={<Userhome/>}/>
+                <Route path="ngos" element={<Ngos/>}/>
                 <Route path="userhome" element={<Userhome/>}/>
+                <Route path="ngohome" element={<Userhome/>}/>
+                <Route path="donationreq" element={<CreateDonation/>}/>
+                <Route path="postevent" element={<CreateEvent/>}/>
+                <Route path="getevent" element={<AllEvents/>}/>
 
   
               </Route>

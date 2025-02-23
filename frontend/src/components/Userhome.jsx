@@ -8,7 +8,7 @@ const Userhome = () => {
   });
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-gray-100">
       {/* Hero Section */}
       <section className="relative bg-blue-600 text-white py-20 px-5 text-center">
         <div className="max-w-3xl mx-auto">

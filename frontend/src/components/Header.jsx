@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="bg-blue-600 text-white p-4 shadow-md">
-      <div className="container mx-auto flex justify-between items-center">
+    <header className="bg-slate-500 text-white p-4 shadow-md my-2">  {/* Darker Blue */}
+      <div className="w-full max-w-[1200px] mx-auto flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold">
           NGO Donation Platform
         </Link>
@@ -14,11 +14,6 @@ const Header = () => {
                 NGOs
               </Link>
             </li>
-            {/* <li>
-              <Link to="/donate" className="hover:underline">
-                Donate
-              </Link>
-            </li> */}
             <li>
               <Link to="/signup" className="hover:underline">
                 Sign Up
