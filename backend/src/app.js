@@ -33,11 +33,19 @@ app.use(cookieParser())
 
 import userRouter from "./routes/user.routes.js"
 import ngoRouter from "./routes/ngo.routes.js"
+import eventRouter from "./routes/events.routes.js"
+import eventdocumentRouter from "./routes/eventdocument.routes.js"
+import donationreqRouter from "./routes/donationreq.routes.js"
+import donationreqdocumentRouter from "./routes/donationdocument.routes.js"
 
 // routes declaration 
 
 app.use("/v1/users",userRouter)
 app.use("/v1/ngo",ngoRouter)
+app.use("/v1/event",eventRouter)
+app.use("/v1/eventdocument",eventdocumentRouter)
+app.use("/v1/donationreq",donationreqRouter)
+app.use("/v1/donationreqdocument",donationreqdocumentRouter)
 app.get("/test", (req, res) => {
     res.send("Server is working on 8000!");
   });

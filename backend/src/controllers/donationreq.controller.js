@@ -18,6 +18,7 @@ const postDonation = asyncHandler(async(req,res) => {
    
 
     const DonationPost = await Donationreq.create({
+        createdBy:req.ngo._id,
         title,
         status,
         desc,
