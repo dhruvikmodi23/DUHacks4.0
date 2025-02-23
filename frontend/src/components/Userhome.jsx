@@ -1,6 +1,10 @@
 import React from "react";
 import { Box, Button, Container, Grid, Paper, Typography } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
+import { motion } from "framer-motion";
+
+const MotionPaper = motion(Paper);
+const MotionBox = motion(Box);
 
 const UserHome = () => {
   const stats = {
@@ -11,27 +15,23 @@ const UserHome = () => {
 
   const carouselItems = [
     {
-      image: "../../public/gettyimages-1498170916-612x612.jpg" ,
+      image: "../../public/child-rights.webp",
       caption: "Make a Difference Today",
     },
     {
-      image: "https://source.unsplash.com/1600x900/?volunteer",
+      image: "../../public/End-Global-Poverty-scaled.webp",
       caption: "Empowering NGOs & Volunteers",
     },
     {
-      image: "https://source.unsplash.com/1600x900/?donation",
+      image: "../../public/Honduras-nonprofits-struggles-reflect-pandemics-toll-on-NGOs-2.1jpg.jpg",
       caption: "Your Support Changes Lives",
     },
   ];
 
   return (
-    <Box sx={{ backgroundColor: "#f5f5f5" }}>
+    <Box sx={{ backgroundColor: "#f0f2f5"}}>
       {/* Hero Section with Carousel */}
-      <Carousel
-        animation="slide"
-        indicators={true}
-        navButtonsAlwaysVisible={true}
-      >
+      <Carousel animation="slide" indicators={true} navButtonsAlwaysVisible={true}>
         {carouselItems.map((item, index) => (
           <Box key={index} sx={{ position: "relative" }}>
             <img
@@ -39,22 +39,24 @@ const UserHome = () => {
               alt={item.caption}
               style={{
                 width: "100%",
-                height: "500px",
+                height: "550px",
                 objectFit: "cover",
-                borderRadius: "5px",
+                borderRadius: "8px",
+                filter: "brightness(85%)",
               }}
             />
             <Typography
-              variant="h4"
+              variant="h3"
               sx={{
                 position: "absolute",
-                bottom: 20,
+                bottom: 30,
                 left: "50%",
                 transform: "translateX(-50%)",
                 color: "white",
                 backgroundColor: "rgba(0, 0, 0, 0.6)",
-                padding: "10px 20px",
-                borderRadius: "5px",
+                padding: "15px 25px",
+                borderRadius: "10px",
+                fontWeight: "bold",
               }}
             >
               {item.caption}
@@ -63,97 +65,77 @@ const UserHome = () => {
         ))}
       </Carousel>
 
-      {/* Why This Project? */}
-      <Container sx={{ py: 6, textAlign: "center" }}>
-        <Typography variant="h4" fontWeight="bold" gutterBottom>
-          Why This Project?
-        </Typography>
-        <Typography variant="body1" color="textSecondary" maxWidth="md" mx="auto">
-          Millions of people lack access to basic needs. Our platform connects NGOs with donors to bring hope and change.
-        </Typography>
+      {/* About Section */}
+      <Container sx={{ textAlign: "center" }}>
+        <MotionBox initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+          <Typography variant="h3" fontWeight="bold" gutterBottom>
+            Why This Project?
+          </Typography>
+          <Typography variant="h6" color="textSecondary" maxWidth="md" mx="auto">
+            Millions of people lack access to basic needs. Our platform connects NGOs with donors to bring hope and change.
+          </Typography>
+        </MotionBox>
       </Container>
 
       {/* Who Benefits? */}
-      <Container sx={{ py: 6 }}>
-        <Typography variant="h4" fontWeight="bold" textAlign="center" gutterBottom>
+      <Container>
+        <Typography variant="h3" fontWeight="bold" textAlign="center" gutterBottom>
           Who Benefits?
         </Typography>
         <Grid container spacing={4}>
-          {[
-            { title: "Underprivileged People", image:"../../public/gettyimages-1498170916-612x612.jpg" },
-            { title: "NGOs & Organizations", image: "https://source.unsplash.com/400x400/?nonprofit" },
-            { title: "Donors & Volunteers", image: "https://source.unsplash.com/400x400/?volunteer" },
-          ].map((item, index) => (
+          {["Underprivileged People", "NGOs & Organizations", "Donors & Volunteers"].map((title, index) => (
             <Grid item xs={12} sm={4} key={index}>
-              <Paper elevation={3} sx={{ p: 3, textAlign: "center" }}>
-                <img src={item.image} alt={item.title} style={{ borderRadius: "50%", width: "100px", height: "100px" }} />
-                <Typography variant="h6" fontWeight="bold" mt={2}>
-                  {item.title}
+              <MotionPaper whileHover={{ scale: 1.05 }} elevation={4}
+                sx={{
+                  p: 4,
+                  textAlign: "center",
+                  borderRadius: "10px",
+                  background: "rgba(255, 255, 255, 0.8)",
+                  backdropFilter: "blur(10px)",
+                }}>
+                <Typography variant="h5" fontWeight="bold">
+                  {title}
                 </Typography>
-                <Typography variant="body2" color="textSecondary">
+                <Typography variant="body1" color="textSecondary" mt={1}>
                   Making a positive impact with donations and support.
                 </Typography>
-              </Paper>
+              </MotionPaper>
             </Grid>
           ))}
         </Grid>
       </Container>
 
-      {/* Platform Features */}
-      <Container sx={{ py: 6, textAlign: "center" }}>
-        <Typography variant="h4" fontWeight="bold" gutterBottom>
-          Key Features
-        </Typography>
-        <Grid container spacing={3} justifyContent="center">
-          {[
-            "✅ View and support registered NGOs",
-            "✅ Donate directly or respond to NGO requests",
-            "✅ Secure and transparent transactions",
-            "✅ Track donation history",
-            "✅ Connect with NGOs and volunteers",
-          ].map((feature, index) => (
-            <Grid item xs={12} sm={6} key={index}>
-              <Typography variant="body1">{feature}</Typography>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-
-      {/* Platform Impact (Statistics) */}
-      <Box sx={{ bgcolor: "primary.main", color: "white", py: 6, textAlign: "center" }}>
-        <Typography variant="h4" fontWeight="bold" gutterBottom>
+      {/* Statistics Section */}
+      <Box sx={{ bgcolor: "primary.main", color: "white", py: 6, mt: 6 ,textAlign: "center" }}>
+        <Typography variant="h3" fontWeight="bold" gutterBottom>
           Platform Impact
         </Typography>
-        <Grid container spacing={3} justifyContent="center">
+        <Grid container spacing={4} justifyContent="center">
           {[
             { label: "Total NGOs", value: stats.totalNGOs },
             { label: "Total Donations", value: stats.totalDonations },
             { label: "Active Users", value: stats.activeUsers },
           ].map((item, index) => (
             <Grid item xs={12} sm={4} key={index}>
-              <Paper elevation={3} sx={{ p: 4, bgcolor: "primary.dark", color: "white" }}>
-                <Typography variant="h6">{item.label}</Typography>
-                <Typography variant="h4" fontWeight="bold">
+              <MotionPaper whileHover={{ scale: 1.1 }} elevation={5}
+                sx={{
+                  p: 5,
+                  background: "rgba(255, 255, 255, 0.2)",
+                  backdropFilter: "blur(15px)",
+                  borderRadius: "15px",
+                }}>
+                <Typography variant="h5" fontWeight="bold">
+                  {item.label}
+                </Typography>
+                <Typography variant="h3" fontWeight="bold">
                   {item.value}+
                 </Typography>
-              </Paper>
+              </MotionPaper>
             </Grid>
           ))}
         </Grid>
       </Box>
 
-      {/* Call to Action */}
-      <Container sx={{ py: 6, textAlign: "center" }}>
-        <Typography variant="h4" fontWeight="bold" gutterBottom>
-          Join Us & Make a Difference!
-        </Typography>
-        <Typography variant="body1" color="textSecondary" maxWidth="md" mx="auto" mb={3}>
-          Your contribution can bring hope and change. Be a part of this movement.
-        </Typography>
-        <Button variant="contained" color="primary" size="large">
-          Get Started
-        </Button>
-      </Container>
     </Box>
   );
 };
