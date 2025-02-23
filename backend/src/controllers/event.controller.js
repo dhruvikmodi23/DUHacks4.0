@@ -4,6 +4,7 @@ import {Donationreq} from "../models/donationreq.model.js"
 import {Event} from "../models/event.model.js"
 import { ApiResponse } from "../utils/ApiResponse.js"
 import jwt from "jsonwebtoken"
+import { Eventdocument } from "../models/eventdocument.model.js"
 
 const postEvent = asyncHandler(async(req,res) => {
 
@@ -211,8 +212,32 @@ const getmyEvent = asyncHandler(async (req, res) => {
 })
 
 
+const getParticipantsByEventId = asyncHandler(async (req, res) => {
+    const { eventId } = req.body; // Extract eventId from the request body
+
+    console.log("Fetching participants for event ID:", eventId);
+
+    if (!eventId) {
+        throw new ApiError(400, "Event ID is required");
+    }
+
+    const event = await Eventdocument.findById(eventId).populate("volunteerId", "name email phone");
+
+    if (!event) {
+        throw new ApiError(404, "Event not found");
+    }
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, event.volunteerId, "Participants retrieved successfully"));
+});
+
+
+
+
 export {
     postEvent,
     getallEvent,
-    getmyEvent
+    getmyEvent,
+    getParticipantsByEventId
 }

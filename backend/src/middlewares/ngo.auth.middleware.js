@@ -13,6 +13,9 @@ export const verifyJWTNGO = asyncHandler(async (req, _, next) => { // "_" if req
             token = req.headers.authorization?.split(" ")[1];
         }
         console.log(token);
+        console.log("Headers received:", req.headers);
+console.log("Authorization header:", req.headers.authorization);
+
         
     
         if(!token){
