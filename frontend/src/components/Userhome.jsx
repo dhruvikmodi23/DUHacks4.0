@@ -1,147 +1,157 @@
-import { Box, Button, Card, CardContent, CardMedia, Container, Grid, Paper, Typography } from "@mui/material";
-import { useState } from "react";
-import PeopleIcon from "@mui/icons-material/People";
-import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
-import BusinessIcon from "@mui/icons-material/Business";
+import React from "react";
+import { Box, Button, Container, Grid, Paper, Typography } from "@mui/material";
+import Carousel from "react-material-ui-carousel";
+import { motion } from "framer-motion";
 
-const Userhome = () => {
-  const [stats, setStats] = useState({
+const MotionPaper = motion(Paper);
+const MotionBox = motion(Box);
+
+const UserHome = () => {
+  const stats = {
     totalNGOs: 50,
     totalDonations: 500,
     activeUsers: 1000,
-  });
+  };
+
+  const carouselItems = [
+    {
+      image: "../../public/child-rights.webp",
+      caption: "Make a Difference Today",
+    },
+    {
+      image: "../../public/End-Global-Poverty-scaled.webp",
+      caption: "Empowering NGOs & Volunteers",
+    },
+    {
+      image: "../../public/Honduras-nonprofits-struggles-reflect-pandemics-toll-on-NGOs-2.1jpg.jpg",
+      caption: "Your Support Changes Lives",
+    },
+  ];
 
   return (
-    <Box sx={{ bgcolor: "#f5f5f5", minHeight: "100vh" }}>
-      
-      {/* Hero Section with Background Image */}
-      <Box
-        sx={{
-          position: "relative",
-          height: "80vh",
-          background: `url(https://source.unsplash.com/1600x900/?charity,help) center/cover no-repeat`,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center",
-          color: "white",
-        }}
-      >
-        <Box sx={{ bgcolor: "rgba(0, 0, 0, 0.5)", p: 5, borderRadius: 2 }}>
-          <Container maxWidth="md">
-            <Typography variant="h3" fontWeight="bold" gutterBottom>
-              HelpHub – A Platform for Helping the Underprivileged
+    <Box sx={{ backgroundColor: "#f0f2f5" }}>
+      {/* Hero Section with Carousel */}
+      <Carousel animation="slide" indicators={true} navButtonsAlwaysVisible={true}>
+        {carouselItems.map((item, index) => (
+          <Box key={index} sx={{ position: "relative" }}>
+            <img
+              src={item.image}
+              alt={item.caption}
+              style={{
+                width: "100%",
+                height: "550px",
+                objectFit: "cover",
+                borderRadius: "8px",
+                filter: "brightness(85%)",
+              }}
+            />
+            <Typography
+              variant="h3"
+              sx={{
+                position: "absolute",
+                bottom: 30,
+                left: "50%",
+                transform: "translateX(-50%)",
+                color: "white",
+                backgroundColor: "rgba(0, 0, 0, 0.6)",
+                padding: "15px 25px",
+                borderRadius: "10px",
+                fontWeight: "bold",
+              }}
+            >
+              {item.caption}
             </Typography>
-            <Typography variant="h6" sx={{ opacity: 0.9, mb: 3 }}>
-              Connecting NGOs and kind-hearted donors to make a difference.
-            </Typography>
-            <Button variant="contained" color="secondary" size="large">
-              Get Started
-            </Button>
-          </Container>
-        </Box>
-      </Box>
+          </Box>
+        ))}
+      </Carousel>
 
-      {/* Why This Project? */}
-      <Container sx={{ py: 10, textAlign: "center" }}>
-        <Typography variant="h4" fontWeight="bold" gutterBottom>
-          Why This Project?
-        </Typography>
-        <Typography variant="h6" color="text.secondary">
-          Millions of people lack basic necessities. NGOs struggle to reach the right donors. This platform bridges the gap between donors and NGOs, making donations seamless and transparent.
-        </Typography>
+      {/* About Section */}
+      <Container sx={{ py: 6, textAlign: "center" }}>
+        <MotionBox initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+          <Typography variant="h3" fontWeight="bold" gutterBottom>
+            Why This Project?
+          </Typography>
+          <Typography variant="h6" color="textSecondary" maxWidth="md" mx="auto">
+            Millions of people lack access to basic needs. Our platform connects NGOs with donors to bring hope and change.
+          </Typography>
+        </MotionBox>
       </Container>
 
-      {/* Who Benefits? - With Images */}
-      <Box sx={{ bgcolor: "white", py: 10 }}>
-        <Container>
-          <Typography variant="h4" fontWeight="bold" textAlign="center" gutterBottom>
-            Who Benefits?
-          </Typography>
-          <Grid container spacing={4} justifyContent="center">
-            {[
-              { title: "Underprivileged People", desc: "Receive essentials like food, clothes, and shelter.", img: "https://source.unsplash.com/400x300/?homeless,help" },
-              { title: "NGOs & Organizations", desc: "Connect with potential donors and get support.", img: "https://source.unsplash.com/400x300/?ngo,volunteer" },
-              { title: "Donors & Volunteers", desc: "Contribute and make a difference with ease.", img: "https://source.unsplash.com/400x300/?donation,charity" }
-            ].map((item, index) => (
-              <Grid item xs={12} md={4} key={index}>
-                <Card sx={{ bgcolor: "primary.light", color: "black" }}>
-                  <CardMedia component="img" height="200" image={item.img} alt={item.title} />
-                  <CardContent>
-                    <Typography variant="h6" fontWeight="bold">
-                      {item.title}
-                    </Typography>
-                    <Typography variant="body1">{item.desc}</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
-
-      {/* Platform Features */}
-      <Container sx={{ py: 10, textAlign: "center" }}>
-        <Typography variant="h4" fontWeight="bold" gutterBottom>
-          Key Features
+      {/* Who Benefits? */}
+      <Container>
+        <Typography variant="h3" fontWeight="bold" textAlign="center" gutterBottom>
+          Who Benefits?
         </Typography>
-        <Typography variant="h6" color="text.secondary" sx={{ mb: 3 }}>
-          Explore the essential features of our platform:
-        </Typography>
-        <Grid container spacing={3} justifyContent="center">
-          {[
-            "✅ View and support registered NGOs",
-            "✅ Donate directly or respond to NGO requests",
-            "✅ Secure and transparent transactions",
-            "✅ Track donation history",
-            "✅ Connect with NGOs and volunteers"
-          ].map((feature, index) => (
-            <Grid item xs={12} md={4} key={index}>
-              <Paper elevation={3} sx={{ p: 3 }}>
-                <Typography variant="body1">{feature}</Typography>
-              </Paper>
+        <Grid container spacing={4}>
+          {["Underprivileged People", "NGOs & Organizations", "Donors & Volunteers"].map((title, index) => (
+            <Grid item xs={12} sm={4} key={index}>
+              <MotionPaper whileHover={{ scale: 1.05 }} elevation={4}
+                sx={{
+                  p: 4,
+                  textAlign: "center",
+                  borderRadius: "10px",
+                  background: "rgba(255, 255, 255, 0.8)",
+                  backdropFilter: "blur(10px)",
+                }}>
+                <Typography variant="h5" fontWeight="bold">
+                  {title}
+                </Typography>
+                <Typography variant="body1" color="textSecondary" mt={1}>
+                  Making a positive impact with donations and support.
+                </Typography>
+              </MotionPaper>
             </Grid>
           ))}
         </Grid>
       </Container>
 
-      {/* Statistics Section with Icons */}
-      <Box sx={{ bgcolor: "primary.dark", color: "white", py: 10 }}>
-        <Container>
-          <Typography variant="h4" fontWeight="bold" textAlign="center" gutterBottom>
-            Platform Impact
-          </Typography>
-          <Grid container spacing={4} justifyContent="center">
-            {[
-              { label: "Total NGOs", value: stats.totalNGOs, icon: <BusinessIcon fontSize="large" /> },
-              { label: "Total Donations", value: stats.totalDonations, icon: <VolunteerActivismIcon fontSize="large" /> },
-              { label: "Active Users", value: stats.activeUsers, icon: <PeopleIcon fontSize="large" /> }
-            ].map((stat, index) => (
-              <Grid item xs={12} md={4} key={index}>
-                <Paper elevation={6} sx={{ bgcolor: "primary.main", p: 4, textAlign: "center" }}>
-                  {stat.icon}
-                  <Typography variant="h5">{stat.label}</Typography>
-                  <Typography variant="h4" fontWeight="bold">
-                    {stat.value}+
-                  </Typography>
-                </Paper>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
+      {/* Statistics Section */}
+      <Box sx={{ bgcolor: "primary.main", color: "white", py: 6, textAlign: "center" }}>
+        <Typography variant="h3" fontWeight="bold" gutterBottom>
+          Platform Impact
+        </Typography>
+        <Grid container spacing={4} justifyContent="center">
+          {[
+            { label: "Total NGOs", value: stats.totalNGOs },
+            { label: "Total Donations", value: stats.totalDonations },
+            { label: "Active Users", value: stats.activeUsers },
+          ].map((item, index) => (
+            <Grid item xs={12} sm={4} key={index}>
+              <MotionPaper whileHover={{ scale: 1.1 }} elevation={5}
+                sx={{
+                  p: 5,
+                  background: "rgba(255, 255, 255, 0.2)",
+                  backdropFilter: "blur(15px)",
+                  borderRadius: "15px",
+                }}>
+                <Typography variant="h5" fontWeight="bold">
+                  {item.label}
+                </Typography>
+                <Typography variant="h3" fontWeight="bold">
+                  {item.value}+
+                </Typography>
+              </MotionPaper>
+            </Grid>
+          ))}
+        </Grid>
       </Box>
 
       {/* Call to Action */}
-      <Container sx={{ py: 10, textAlign: "center" }}>
-        <Typography variant="h4" fontWeight="bold" gutterBottom>
-          Join Us & Make a Difference!
-        </Typography>
-        <Button variant="contained" color="secondary" size="large">
-          Get Started
-        </Button>
+      <Container sx={{ py: 6, textAlign: "center" }}>
+        <MotionBox whileHover={{ scale: 1.05 }}>
+          <Typography variant="h3" fontWeight="bold" gutterBottom>
+            Join Us & Make a Difference!
+          </Typography>
+          <Typography variant="h6" color="textSecondary" maxWidth="md" mx="auto" mb={3}>
+            Your contribution can bring hope and change. Be a part of this movement.
+          </Typography>
+          <Button variant="contained" color="primary" size="large">
+            Get Started
+          </Button>
+        </MotionBox>
       </Container>
     </Box>
   );
 };
 
-export default Userhome;
+export default UserHome;
