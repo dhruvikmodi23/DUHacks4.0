@@ -13,6 +13,7 @@ import Ngos from './components/Ngos'
 import CreateDonation from './components/Donationreq'
 import CreateEvent from './components/Events'
 import AllEvents from './components/Getallevents'
+import NgoDonations from './components/Mypost'
 
 function App() {
   const router = createBrowserRouter(
@@ -28,6 +29,7 @@ function App() {
                 <Route path="donationreq" element={<CreateDonation/>}/>
                 <Route path="postevent" element={<CreateEvent/>}/>
                 <Route path="getevent" element={<AllEvents/>}/>
+                <Route path="getmypost" element={<NgoDonations/>}/>
 
   
               </Route>

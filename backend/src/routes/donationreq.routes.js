@@ -5,7 +5,7 @@ import {upload} from "../middlewares/multer.middleware.js"
 
 const router = Router()
 
-router.route("/postdonation").post(postDonation)
+router.route("/postdonation").post(verifyJWTNGO,postDonation)
 router.route("/getdonation").post(getDonation)
 router.route("/updatedonationpost").post(updateDonationPost)
 router.route("/deletedonationpost").post(deleteDonationPost)

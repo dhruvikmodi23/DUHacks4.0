@@ -30,7 +30,7 @@ const CreateDonation = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/v1/donations/postDonation",
+        "http://localhost:8000/v1/donationreq/postdonation",
         donation,
         { withCredentials: true } // Ensures session cookies are sent
       );

@@ -159,8 +159,7 @@ const deleteDonationPost = asyncHandler(async(req, res) => {
 const getDonationPostPostedByNgo = asyncHandler(async (req, res) => {
     
    
-    const id = req.ngo._id
-    
+    const {ngoid} = req.body
 
     console.log(req.query);
     console.log(req.body);
@@ -170,7 +169,7 @@ const getDonationPostPostedByNgo = asyncHandler(async (req, res) => {
     const query = {};
 
     
-        query.createdBy = id
+        query.createdBy = ngoid
     
 
     

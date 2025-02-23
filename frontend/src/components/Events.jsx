@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const CreateEvent = () => {
+  const { status, userData } = useSelector((state) => state.auth);
   const [event, setEvent] = useState({
     title: "",
     status: "",
@@ -29,8 +31,8 @@ const CreateEvent = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/events/postEvent",
-        { ...event, createdBy: "NGO_ID_HERE" }, // Replace with actual NGO ID with the help of user stored in redux store
+        "http://localhost:8000/v1/event/postevent",
+        { ...event, createdBy: userData._id }, // Replace with actual NGO ID with the help of user stored in redux store
         { withCredentials: true }
       );
 

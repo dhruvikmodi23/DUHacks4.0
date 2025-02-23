@@ -1,11 +1,11 @@
 import { Router } from "express";
 import { applyToDonation } from "../controllers/donationdocument.controller.js";
-import { verifyJWTNGO } from "../middlewares/ngo.auth.middleware.js";
+import { verifyJWT } from "../middlewares/auth.middleware.js";
 import {upload} from "../middlewares/multer.middleware.js"
 
 const router = Router()
 
-router.route("/applytodonation").post(applyToDonation)
+router.route("/applytodonation").post(verifyJWT,applyToDonation)
 
 //router.route("/getallevent").post(getallEvent)
 

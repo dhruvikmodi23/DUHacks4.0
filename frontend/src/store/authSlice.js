@@ -12,15 +12,17 @@ const authSlice = createSlice({
     login: (state, action) => {
       state.status = true;
       state.userData = action.payload;
-      
-      // Save user to localStorage
+
+      console.log("Storing in Redux:", action.payload); // Debugging
+
+      // Save to localStorage
       localStorage.setItem("userData", JSON.stringify(action.payload));
     },
     logout: (state) => {
       state.status = false;
       state.userData = null;
 
-      // Remove user from localStorage
+      // Remove from localStorage
       localStorage.removeItem("userData");
     },
   },

@@ -1,99 +1,161 @@
-import { useEffect, useState } from "react";
+import React from "react";
+import { Box, Button, Container, Grid, Paper, Typography } from "@mui/material";
+import Carousel from "react-material-ui-carousel";
 
-const Userhome = () => {
-  const [stats, setStats] = useState({
+const UserHome = () => {
+  const stats = {
     totalNGOs: 50,
     totalDonations: 500,
     activeUsers: 1000,
-  });
+  };
+
+  const carouselItems = [
+    {
+      image: "../../public/gettyimages-1498170916-612x612.jpg" ,
+      caption: "Make a Difference Today",
+    },
+    {
+      image: "https://source.unsplash.com/1600x900/?volunteer",
+      caption: "Empowering NGOs & Volunteers",
+    },
+    {
+      image: "https://source.unsplash.com/1600x900/?donation",
+      caption: "Your Support Changes Lives",
+    },
+  ];
 
   return (
-    <div className="bg-gray-100">
-      {/* Hero Section */}
-      <section className="relative bg-blue-600 text-white py-20 px-5 text-center">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl font-bold mb-4">HelpHub – A Platform for Helping the Underprivileged</h1>
-          <p className="text-lg">
-            Connecting NGOs and kind-hearted donors to make a difference in the lives of those in need.
-          </p>
-        </div>
-      </section>
+    <Box sx={{ backgroundColor: "#f5f5f5" }}>
+      {/* Hero Section with Carousel */}
+      <Carousel
+        animation="slide"
+        indicators={true}
+        navButtonsAlwaysVisible={true}
+      >
+        {carouselItems.map((item, index) => (
+          <Box key={index} sx={{ position: "relative" }}>
+            <img
+              src={item.image}
+              alt={item.caption}
+              style={{
+                width: "100%",
+                height: "500px",
+                objectFit: "cover",
+                borderRadius: "5px",
+              }}
+            />
+            <Typography
+              variant="h4"
+              sx={{
+                position: "absolute",
+                bottom: 20,
+                left: "50%",
+                transform: "translateX(-50%)",
+                color: "white",
+                backgroundColor: "rgba(0, 0, 0, 0.6)",
+                padding: "10px 20px",
+                borderRadius: "5px",
+              }}
+            >
+              {item.caption}
+            </Typography>
+          </Box>
+        ))}
+      </Carousel>
 
       {/* Why This Project? */}
-      <section className="py-16 px-5">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">Why This Project?</h2>
-          <p className="text-lg text-gray-600">
-            Millions of people lack basic necessities like food, clothing, and shelter. Many NGOs work tirelessly to help them but face difficulties in reaching the right donors. This platform bridges the gap between donors and NGOs, making donations seamless and transparent.
-          </p>
-        </div>
-      </section>
+      <Container sx={{ py: 6, textAlign: "center" }}>
+        <Typography variant="h4" fontWeight="bold" gutterBottom>
+          Why This Project?
+        </Typography>
+        <Typography variant="body1" color="textSecondary" maxWidth="md" mx="auto">
+          Millions of people lack access to basic needs. Our platform connects NGOs with donors to bring hope and change.
+        </Typography>
+      </Container>
 
       {/* Who Benefits? */}
-      <section className="bg-white py-16 px-5">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">Who Benefits?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 shadow-lg rounded-lg bg-blue-50">
-              <h3 className="text-xl font-semibold mb-2">Underprivileged People</h3>
-              <p className="text-gray-600">They receive essential donations like food, clothes, and shelter.</p>
-            </div>
-            <div className="p-6 shadow-lg rounded-lg bg-blue-50">
-              <h3 className="text-xl font-semibold mb-2">NGOs & Organizations</h3>
-              <p className="text-gray-600">They get connected with potential donors and receive necessary support.</p>
-            </div>
-            <div className="p-6 shadow-lg rounded-lg bg-blue-50">
-              <h3 className="text-xl font-semibold mb-2">Donors & Volunteers</h3>
-              <p className="text-gray-600">They can contribute and make a difference in society with ease.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Container sx={{ py: 6 }}>
+        <Typography variant="h4" fontWeight="bold" textAlign="center" gutterBottom>
+          Who Benefits?
+        </Typography>
+        <Grid container spacing={4}>
+          {[
+            { title: "Underprivileged People", image:"../../public/gettyimages-1498170916-612x612.jpg" },
+            { title: "NGOs & Organizations", image: "https://source.unsplash.com/400x400/?nonprofit" },
+            { title: "Donors & Volunteers", image: "https://source.unsplash.com/400x400/?volunteer" },
+          ].map((item, index) => (
+            <Grid item xs={12} sm={4} key={index}>
+              <Paper elevation={3} sx={{ p: 3, textAlign: "center" }}>
+                <img src={item.image} alt={item.title} style={{ borderRadius: "50%", width: "100px", height: "100px" }} />
+                <Typography variant="h6" fontWeight="bold" mt={2}>
+                  {item.title}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  Making a positive impact with donations and support.
+                </Typography>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
 
       {/* Platform Features */}
-      <section className="py-16 px-5">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">Key Features</h2>
-          <ul className="text-lg text-gray-600 space-y-4">
-            <li>✅ View and support registered NGOs</li>
-            <li>✅ Donate directly or respond to NGO requests</li>
-            <li>✅ Secure and transparent transactions</li>
-            <li>✅ Track donation history</li>
-            <li>✅ Connect with NGOs and volunteers</li>
-          </ul>
-        </div>
-      </section>
+      <Container sx={{ py: 6, textAlign: "center" }}>
+        <Typography variant="h4" fontWeight="bold" gutterBottom>
+          Key Features
+        </Typography>
+        <Grid container spacing={3} justifyContent="center">
+          {[
+            "✅ View and support registered NGOs",
+            "✅ Donate directly or respond to NGO requests",
+            "✅ Secure and transparent transactions",
+            "✅ Track donation history",
+            "✅ Connect with NGOs and volunteers",
+          ].map((feature, index) => (
+            <Grid item xs={12} sm={6} key={index}>
+              <Typography variant="body1">{feature}</Typography>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
 
-      {/* Statistics */}
-      <section className="bg-blue-600 text-white py-16 px-5">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">Platform Impact</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 bg-blue-500 rounded-lg">
-              <h3 className="text-xl font-semibold">Total NGOs</h3>
-              <p className="text-2xl font-bold">{stats.totalNGOs}+</p>
-            </div>
-            <div className="p-6 bg-blue-500 rounded-lg">
-              <h3 className="text-xl font-semibold">Total Donations</h3>
-              <p className="text-2xl font-bold">{stats.totalDonations}+</p>
-            </div>
-            <div className="p-6 bg-blue-500 rounded-lg">
-              <h3 className="text-xl font-semibold">Active Users</h3>
-              <p className="text-2xl font-bold">{stats.activeUsers}+</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Platform Impact (Statistics) */}
+      <Box sx={{ bgcolor: "primary.main", color: "white", py: 6, textAlign: "center" }}>
+        <Typography variant="h4" fontWeight="bold" gutterBottom>
+          Platform Impact
+        </Typography>
+        <Grid container spacing={3} justifyContent="center">
+          {[
+            { label: "Total NGOs", value: stats.totalNGOs },
+            { label: "Total Donations", value: stats.totalDonations },
+            { label: "Active Users", value: stats.activeUsers },
+          ].map((item, index) => (
+            <Grid item xs={12} sm={4} key={index}>
+              <Paper elevation={3} sx={{ p: 4, bgcolor: "primary.dark", color: "white" }}>
+                <Typography variant="h6">{item.label}</Typography>
+                <Typography variant="h4" fontWeight="bold">
+                  {item.value}+
+                </Typography>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
 
       {/* Call to Action */}
-      <section className="py-16 px-5 text-center">
-        <h2 className="text-3xl font-bold text-gray-800 mb-6">Join Us & Make a Difference!</h2>
-        <button className="bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition">
+      <Container sx={{ py: 6, textAlign: "center" }}>
+        <Typography variant="h4" fontWeight="bold" gutterBottom>
+          Join Us & Make a Difference!
+        </Typography>
+        <Typography variant="body1" color="textSecondary" maxWidth="md" mx="auto" mb={3}>
+          Your contribution can bring hope and change. Be a part of this movement.
+        </Typography>
+        <Button variant="contained" color="primary" size="large">
           Get Started
-        </button>
-      </section>
-    </div>
+        </Button>
+      </Container>
+    </Box>
   );
 };
 
-export default Userhome;
+export default UserHome;

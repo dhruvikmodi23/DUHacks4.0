@@ -39,7 +39,7 @@ const getallEvent = asyncHandler(async (req, res) => {
     const event = await Event.find()
         return res
             .status(200)
-            .json(new ApiResponse(200, ngo, "event retrieved successfully"))
+            .json(new ApiResponse(200, event, "event retrieved successfully"))
 })
 
 // const updateDonationPost = asyncHandler(async (req, res) => {

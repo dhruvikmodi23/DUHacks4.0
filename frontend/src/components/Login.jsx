@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../store/authSlice";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [userType, setUserType] = useState("user");
   const [formData, setFormData] = useState({
     usernameOrEmail: "",
@@ -17,11 +17,14 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    // Select correct endpoint based on user type
-    const endpoint = userType === "user" ? "http://localhost:8000/v1/users/login" : "http://localhost:8000/v1/ngo/login";
+    const endpoint =
+      userType === "user"
+        ? "http://localhost:8000/v1/users/login"
+        : "http://localhost:8000/v1/ngo/login";
 
     try {
       const response = await fetch(endpoint, {
@@ -30,33 +33,39 @@ const Login = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: formData.usernameOrEmail.includes("@") ? formData.usernameOrEmail : undefined,
-          username: formData.usernameOrEmail.includes("@") ? undefined : formData.usernameOrEmail,
+          email: formData.usernameOrEmail.includes("@")
+            ? formData.usernameOrEmail
+            : undefined,
+          username: formData.usernameOrEmail.includes("@")
+            ? undefined
+            : formData.usernameOrEmail,
           password: formData.password,
         }),
-        credentials: "include", // Important for handling cookies
+        credentials: "include",
       });
 
       const result = await response.json();
+      console.log("API Response:", result); // Debugging
 
       if (response.ok) {
         alert("Login successful!");
-        console.log(result);
-        if(userType==="user"){
-            dispatch(login(result.data.user))
-            navigate("/userhome")
-        }else{
-            dispatch(login(result.data.ngo))
-            navigate("/ngohome")
-        }
-       
-        console.log("User Data:", result.user);
+
+        // Add role manually before dispatching
+        const userData = userType === "user" ? result.data.user : result.data.ngo;
+        const finalUserData = { ...userData, role: userType };
+
+        console.log("Dispatching to Redux:", finalUserData);
+        dispatch(login(finalUserData));
+
+        navigate(userType === "user" ? "/userhome" : "/ngohome");
       } else {
         alert(result.message || "Login failed");
       }
     } catch (error) {
       console.error("Login error:", error);
       alert("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -78,7 +87,7 @@ const Login = () => {
           </select>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLogin}>
           {/* Username or Email */}
           <div className="mb-4">
             <label className="block font-semibold">Username or Email:</label>
@@ -109,9 +118,17 @@ const Login = () => {
           <button
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+            disabled={loading}
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
+          {/* <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+           
+          >
+           Don,t Have Account ?
+          </button> */}
         </form>
       </div>
     </div>
