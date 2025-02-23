@@ -213,6 +213,47 @@ const updateDonationPostStatus = asyncHandler(async(req, res)=>{
         .json(new ApiResponse(200, DonationPost, "status updated sucessfully for DonationPost"));
 })
 
+const getDonationPostPostedByNgo1 = asyncHandler(async (req, res) => {
+    
+   
+    const id = req.ngo._id
+    
+
+    console.log(req.query);
+    console.log(req.body);
+    
+
+   
+    const query = {};
+
+    
+        query.createdBy = id
+    
+
+    
+
+    console.log(query)
+    
+
+    
+    const DonationPost = await Donationreq.find(query);
+
+    if (!DonationPost || DonationPost.length === 0) {
+        throw new ApiError(404, "No DonationPost found with the given filters");
+    }
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, DonationPost, "DonationPost retrieved successfully"));
+})
+
+
+// const getmypost = asyncHandler(async()=>{
+//     const id = req.ngo._id;
+
+
+// })
+
 
 
 export {
@@ -221,6 +262,7 @@ export {
     updateDonationPost,
     deleteDonationPost,
     getDonationPostPostedByNgo,
-    updateDonationPostStatus
+    updateDonationPostStatus,
+    getDonationPostPostedByNgo1
 
 }

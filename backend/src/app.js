@@ -48,7 +48,7 @@ app.use("/v1/donationreq",donationreqRouter)
 app.use("/v1/donationreqdocument",donationreqdocumentRouter)
 app.get("/test", (req, res) => {
     res.send("Server is working on 8000!");
-  });
+});
   
 
 export { app }
