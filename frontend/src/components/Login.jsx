@@ -50,6 +50,8 @@ const Login = () => {
       if (response.ok) {
         alert("Login successful!");
 
+        localStorage.setItem("accessToken",result.data.accessToken)
+
         // Add role manually before dispatching
         const userData = userType === "user" ? result.data.user : result.data.ngo;
         const finalUserData = { ...userData, role: userType };

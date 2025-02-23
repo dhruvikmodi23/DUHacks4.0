@@ -13,6 +13,7 @@ const NgoDonations = () => {
 
   useEffect(() => {
     console.log(userData.ngo);
+    fetchDonations();
     if (userData?.ngo?._id) {
       fetchDonations(userData.ngo._id);
     }
@@ -23,21 +24,28 @@ const NgoDonations = () => {
     setError("");
 
     try {
+        console.log("Fetching donations for NGO ID:", ngoid);
 
-        console.log("inside ");
-      // Using GET request with query params (if backend supports it)
-      const response = await axios.post(`http://localhost:8000/v1/donationreq/getdonationpostbyngo`);
+        const response = await axios.post(
+            `http://localhost:8000/v1/donationreq/getdonationpostbyngo1`, 
+            {}, 
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // Ensure token is sent
+                },
+                withCredentials: true, // Ensures cookies are included if using httpOnly cookies
+            }
+        );
 
-      console.log("API Response:", response.data); // Debugging
-
-      setDonations(response.data.data || []); // Ensure correct state update
+        console.log("API Response:", response.data);
+        setDonations(response.data.data || []);
     } catch (err) {
-      console.error("Error fetching donation posts:", err.response?.data);
-      setError(err.response?.data?.message || "Failed to fetch donation posts.");
+        console.error("Error fetching donation posts:", err.response?.data);
+        setError(err.response?.data?.message || "Failed to fetch donation posts.");
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
-  };
+};
 
   return (
     <Container>

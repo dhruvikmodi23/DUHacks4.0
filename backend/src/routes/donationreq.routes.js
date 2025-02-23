@@ -10,8 +10,8 @@ router.route("/getdonation").post(getDonation)
 router.route("/updatedonationpost").post(updateDonationPost)
 router.route("/deletedonationpost").post(deleteDonationPost)
 router.route("/getdonationpostbyngo").post(getDonationPostPostedByNgo)
-router.route("/getdonationpostbyngo1").post(getDonationPostPostedByNgo1)
-router.route("/updatedonationstatus").post(verifyJWTNGO,updateDonationPostStatus)
+router.route("/getdonationpostbyngo1").post(verifyJWTNGO,getDonationPostPostedByNgo1)
+router.route("/updatedonationstatus").post(updateDonationPostStatus)
 
 //router.route("/getallevent").post(getallEvent)
 

@@ -214,7 +214,7 @@ const updateDonationPostStatus = asyncHandler(async(req, res)=>{
 
 const getDonationPostPostedByNgo1 = asyncHandler(async (req, res) => {
     
-   
+   console.log(req.ngo._id);
     const id = req.ngo._id
     
 

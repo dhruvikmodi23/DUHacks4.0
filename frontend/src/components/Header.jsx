@@ -49,6 +49,11 @@ const Header = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link to="/getmypost" className="hover:underline">
+                    My Donation
+                  </Link>
+                </li>
+                <li>
                   <button onClick={handleLogout} className="hover:underline">
                     Logout
                   </button>

@@ -2,7 +2,7 @@ import { Facebook, Twitter, Instagram } from "lucide-react"; // Importing icons
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-500 text-white py-8">
+    <footer className="bg-slate-500 text-white py-8 mt-8">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         
         {/* About Section */}
