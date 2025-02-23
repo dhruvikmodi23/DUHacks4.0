@@ -78,7 +78,10 @@ const Header = () => {
                 <Link to="/map" className="hover:underline">
                     GeoTag
                   </Link>
-                  <Link to="/ngos" className="hover:underline">
+                  
+                </li>
+                <li>
+                <Link to="/ngos" className="hover:underline">
                     NGOs
                   </Link>
                 </li>

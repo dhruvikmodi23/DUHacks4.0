@@ -29,7 +29,11 @@ const UserHome = () => {
   ];
 
   return (
+<<<<<<< HEAD
     <Box sx={{ backgroundColor: "#f0f2f5"}}>
+=======
+    <Box sx={{ backgroundColor: "#f0f2f5" }}>
+>>>>>>> 7a15e12b3603979b4f2b860d37d3e7d8bdae1047
       {/* Hero Section with Carousel */}
       <Carousel animation="slide" indicators={true} navButtonsAlwaysVisible={true}>
         {carouselItems.map((item, index) => (
@@ -66,7 +70,11 @@ const UserHome = () => {
       </Carousel>
 
       {/* About Section */}
+<<<<<<< HEAD
       <Container sx={{ textAlign: "center" }}>
+=======
+      <Container sx={{ py: 6, textAlign: "center" }}>
+>>>>>>> 7a15e12b3603979b4f2b860d37d3e7d8bdae1047
         <MotionBox initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
           <Typography variant="h3" fontWeight="bold" gutterBottom>
             Why This Project?
@@ -106,7 +114,11 @@ const UserHome = () => {
       </Container>
 
       {/* Statistics Section */}
+<<<<<<< HEAD
       <Box sx={{ bgcolor: "primary.main", color: "white", py: 6, mt: 6 ,textAlign: "center" }}>
+=======
+      <Box sx={{ bgcolor: "primary.main", color: "white", py: 6, textAlign: "center" }}>
+>>>>>>> 7a15e12b3603979b4f2b860d37d3e7d8bdae1047
         <Typography variant="h3" fontWeight="bold" gutterBottom>
           Platform Impact
         </Typography>
@@ -136,6 +148,23 @@ const UserHome = () => {
         </Grid>
       </Box>
 
+<<<<<<< HEAD
+=======
+      {/* Call to Action */}
+      <Container sx={{ py: 6, textAlign: "center" }}>
+        <MotionBox whileHover={{ scale: 1.05 }}>
+          <Typography variant="h3" fontWeight="bold" gutterBottom>
+            Join Us & Make a Difference!
+          </Typography>
+          <Typography variant="h6" color="textSecondary" maxWidth="md" mx="auto" mb={3}>
+            Your contribution can bring hope and change. Be a part of this movement.
+          </Typography>
+          <Button variant="contained" color="primary" size="large">
+            Get Started
+          </Button>
+        </MotionBox>
+      </Container>
+>>>>>>> 7a15e12b3603979b4f2b860d37d3e7d8bdae1047
     </Box>
   );
 };

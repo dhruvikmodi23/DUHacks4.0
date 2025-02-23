@@ -14,6 +14,12 @@ const applyToDonation = asyncHandler(async (req, res) => {
     const { donationreqId,quantity,category, title, desc, ngoId } = req.body
     console.log(donationreqId);
     console.log(req.body);
+
+    console.log("chodu acting here" );
+    console.log("firse chodu acting ");
+    
+    
+    
     
     
     
