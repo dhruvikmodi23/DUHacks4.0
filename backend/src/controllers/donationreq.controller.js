@@ -247,6 +247,42 @@ const getDonationPostPostedByNgo1 = asyncHandler(async (req, res) => {
 })
 
 
+const getDonationDetails = asyncHandler(async (req, res) => {
+    const { donationId } = req.body; // Receive donationId from request body
+
+    if (!donationId) {
+        throw new ApiError(400, "Donation ID is required");
+    }
+
+    // Fetch the donation request details
+    const donationRequest = await Donationreq.findById(donationId)
+        .populate("createdBy", "name email") // Populate NGO details
+        .lean(); // Convert Mongoose document to plain JS object
+
+    if (!donationRequest) {
+        throw new ApiError(404, "Donation request not found");
+    }
+
+    // Fetch all donations made towards this request
+    const donationDocuments = await Donationdocument.find({ donationreqId: donationId })
+        .populate("donorId", "name email phone") // Populate donor details
+        .populate("ngoId", "name email") // Populate NGO details
+        .lean();
+
+    // Combine request and donor details
+    const responseData = {
+        donationRequest,
+        donationDocuments, // List of donations with donor details
+    };
+
+    return res.status(200).json(new ApiResponse(200, responseData, "Donation details retrieved successfully"));
+});
+
+
+
+
+
+
 // const getmypost = asyncHandler(async()=>{
 //     const id = req.ngo._id;
 
@@ -262,6 +298,7 @@ export {
     deleteDonationPost,
     getDonationPostPostedByNgo,
     updateDonationPostStatus,
-    getDonationPostPostedByNgo1
+    getDonationPostPostedByNgo1,
+    getDonationDetails
 
 }

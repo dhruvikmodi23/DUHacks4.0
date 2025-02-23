@@ -14,6 +14,8 @@ import CreateDonation from './components/Donationreq'
 import CreateEvent from './components/Events'
 import AllEvents from './components/Getallevents'
 import NgoDonations from './components/Mypost'
+import NgoEvents from './components/Myevents'
+import Dashboard from './components/Map'
 
 function App() {
   const router = createBrowserRouter(
@@ -30,6 +32,8 @@ function App() {
                 <Route path="postevent" element={<CreateEvent/>}/>
                 <Route path="getevent" element={<AllEvents/>}/>
                 <Route path="getmypost" element={<NgoDonations/>}/>
+                <Route path="getmyevent" element={<NgoEvents/>}/>
+                <Route path="map" element={<Dashboard/>}/>
 
   
               </Route>

@@ -18,7 +18,7 @@ const Header = () => {
     <header className="bg-slate-500 text-white p-4 shadow-md">
       <div className="w-full max-w-[1200px] mx-auto flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold">
-          NGO Donation Platform
+          SocialConnect
         </Link>
 
         <nav>
@@ -38,9 +38,14 @@ const Header = () => {
               </>
             ) : userData.role === "ngo" ? (
               <>
+              <li>
+              <Link to="/map" className="hover:underline">
+                    GeoTag
+                  </Link>
+              </li>
                 <li>
                   <Link to="/donationreq" className="hover:underline">
-                    Post Request
+                    PostDonationRequest
                   </Link>
                 </li>
                 <li>
@@ -54,14 +59,25 @@ const Header = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link to="/getmyevent" className="hover:underline">
+                    My Events
+                  </Link>
+                </li>
+                <li>
                   <button onClick={handleLogout} className="hover:underline">
                     Logout
                   </button>
+                </li>
+                <li>
+                  {userData.username}
                 </li>
               </>
             ) : (
               <>
                 <li>
+                <Link to="/map" className="hover:underline">
+                    GeoTag
+                  </Link>
                   <Link to="/ngos" className="hover:underline">
                     NGOs
                   </Link>
@@ -75,6 +91,10 @@ const Header = () => {
                   <button onClick={handleLogout} className="hover:underline">
                     Logout
                   </button>
+                  
+                </li>
+                <li>
+                  {userData.username}
                 </li>
               </>
             )}

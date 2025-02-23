@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { deleteDonationPost, getDonation, getDonationPostPostedByNgo, getDonationPostPostedByNgo1, postDonation, updateDonationPost, updateDonationPostStatus } from "../controllers/donationreq.controller.js";
+import { deleteDonationPost, getDonation, getDonationDetails, getDonationPostPostedByNgo, getDonationPostPostedByNgo1, postDonation, updateDonationPost, updateDonationPostStatus } from "../controllers/donationreq.controller.js";
 import { verifyJWTNGO } from "../middlewares/ngo.auth.middleware.js";
 import {upload} from "../middlewares/multer.middleware.js"
 
@@ -12,6 +12,7 @@ router.route("/deletedonationpost").post(deleteDonationPost)
 router.route("/getdonationpostbyngo").post(getDonationPostPostedByNgo)
 router.route("/getdonationpostbyngo1").post(verifyJWTNGO,getDonationPostPostedByNgo1)
 router.route("/updatedonationstatus").post(updateDonationPostStatus)
+router.route("/getdonationdetails").post(verifyJWTNGO,getDonationDetails); 
 
 //router.route("/getallevent").post(getallEvent)
 
