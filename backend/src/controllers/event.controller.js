@@ -176,8 +176,43 @@ const getallEvent = asyncHandler(async (req, res) => {
 
 //TODO: update event 
 
+const getmyEvent = asyncHandler(async (req, res) => {
+    
+   
+    const id = req.ngo._id
+    
+
+    console.log(req.query);
+    console.log(req.body);
+    
+
+   
+    const query = {};
+
+    
+        query.createdBy = id
+    
+
+    
+
+    console.log(query)
+    
+
+    
+    const EventPost = await Event.find(query);
+
+    if (!EventPost || EventPost.length === 0) {
+        throw new ApiError(404, "No EventPost found with the given filters");
+    }
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, EventPost, "EventPost retrieved successfully"));
+})
+
 
 export {
     postEvent,
-    getallEvent
+    getallEvent,
+    getmyEvent
 }

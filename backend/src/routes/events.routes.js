@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getallEvent, postEvent } from "../controllers/event.controller.js";
+import { getallEvent, getmyEvent, postEvent } from "../controllers/event.controller.js";
 import { verifyJWTNGO } from "../middlewares/ngo.auth.middleware.js";
 import {upload} from "../middlewares/multer.middleware.js"
 
@@ -8,6 +8,7 @@ const router = Router()
 router.route("/postevent").post(postEvent)
 
 router.route("/getallevent").post(getallEvent)
+router.route("/getmyevent").post(verifyJWTNGO,getmyEvent)
 
 //secured routes 
 
