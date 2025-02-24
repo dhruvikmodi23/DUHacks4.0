@@ -95,6 +95,12 @@ ngo-donation-platform/
 - Admin panel for platform moderation
 - Email notifications for NGOs and users
 
+## 👨‍💻 Team
+- Pruthviraj Parmar
+- Dhruvik Modi
+- Parthrajsinh Kosamiya
+- Dhruval Mehta
+  
 ## 🤝 Contributing
 We welcome contributions! Feel free to submit a pull request or raise an issue.
 
