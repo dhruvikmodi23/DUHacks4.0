@@ -108,4 +108,4 @@ We welcome contributions! Feel free to submit a pull request or raise an issue.
 This project is licensed under the MIT License.
 
 ## 📩 Contact
-For any queries, reach out at [your email] or create an issue in the repository.
+For any queries, reach out at ppruthviraj254@gmail.com or create an issue in the repository.
