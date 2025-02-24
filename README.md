@@ -96,7 +96,7 @@ ngo-donation-platform/
 - Email notifications for NGOs and users
 
 ## 👨‍💻 Team
-- Pruthviraj Parmar
+- Pruthvirajsinh Parmar
 - Dhruvik Modi
 - Parthrajsinh Kosamiya
 - Dhruval Mehta
