@@ -39,6 +39,8 @@ The **SocialConnect** is a MERN stack-based web application that connects NGOs w
 1. **Clone the Repository**
    ```sh
    git clone https://github.com/dhruvikmodi23/DUHacks4.0
+      or
+   git clone https://github.com/Pruthvi-Parmar/DUHacks4.0
    ```
 
 2. **Setup Backend**
@@ -73,7 +75,6 @@ The **SocialConnect** is a MERN stack-based web application that connects NGOs w
 
 ## 🗂 Folder Structure
 ```
-ngo-donation-platform/
 │── backend/src
 │   ├── models/
 │   ├── routes/
